@@ -4,7 +4,7 @@
 const byId = id => document.getElementById(id);
 const escapeHtml = text => String(text).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 const ui = Object.fromEntries(['surface', 'viewport', 'guide', 'progress', 'progress-fill', 'step-count', 'chapter-label', 'lesson-title', 'instruction', 'context-note', 'feedback', 'source-label', 'back-button', 'repeat-button', 'hint-button', 'zoom-button', 'completion', 'announcer'].map(id => [id, byId(id)]));
-const state = { index: 0, name: '', clipboard: '', overview: false, renderVersion: 0, failedImage: false };
+const state = { index: 0, name: '', clipboard: '', overview: false, renderVersion: 0, failedImage: false, loadingImage: false };
 let configuration;
 let resizeObserver;
 
@@ -51,7 +51,7 @@ function updateProgress() {
 }
 
 function showHint(prefix = '') {
-  if (!currentStep()) return;
+  if (!currentStep() || state.loadingImage || state.failedImage) return;
   ui.feedback.textContent = `${prefix}${currentStep().hint}`;
   centerAction();
   positionGuide();
@@ -60,6 +60,7 @@ function showHint(prefix = '') {
 function render({ focus = true } = {}) {
   const version = ++state.renderVersion;
   state.failedImage = false;
+  state.loadingImage = false;
   updateProgress();
   const step = currentStep();
   ui.guide.hidden = !step;
@@ -92,12 +93,23 @@ function render({ focus = true } = {}) {
   ui.surface.className = `screen-surface ${step.source === 'recreated' ? 'is-recreated' : ''}`;
   ui.surface.style.aspectRatio = `${step.width} / ${step.height}`;
   if (step.source === 'original') {
+    state.loadingImage = true;
     ui.surface.innerHTML = `<img src="./${step.image}" alt="GitHub: ${escapeHtml(step.title)}" width="${step.width}" height="${step.height}" draggable="false">`;
     const image = ui.surface.querySelector('img');
-    image.addEventListener('load', () => { if (version === state.renderVersion) updateSize(); }, { once: true });
+    if (image.complete && image.naturalWidth > 0) state.loadingImage = false;
+    image.addEventListener('load', () => {
+      if (version !== state.renderVersion) return;
+      state.loadingImage = false;
+      ui.viewport.dataset.loading = 'false';
+      const activeTarget = byId('action-target');
+      if (activeTarget) activeTarget.hidden = false;
+      updateSize();
+    }, { once: true });
     image.addEventListener('error', () => {
       if (version !== state.renderVersion) return;
       state.failedImage = true;
+      state.loadingImage = false;
+      ui.viewport.dataset.loading = 'false';
       ui.surface.innerHTML = '<p class="image-error">No se pudo cargar la captura. Recarga la página para intentarlo de nuevo.</p>';
       ui.feedback.textContent = 'La práctica está en pausa hasta que cargue la imagen.';
       ui.guide.style.left = '20px';
@@ -146,6 +158,8 @@ function render({ focus = true } = {}) {
   marker.setAttribute('aria-hidden', 'true');
   marker.textContent = String(state.index + 1);
   target.appendChild(marker);
+  target.hidden = state.loadingImage;
+  ui.viewport.dataset.loading = String(state.loadingImage);
   ui.surface.appendChild(target);
   requestAnimationFrame(() => { if (version === state.renderVersion) updateSize(); });
   if (focus) ui['lesson-title'].focus({ preventScroll: true });
@@ -204,7 +218,7 @@ const clamp = (value, low, high) => Math.min(Math.max(value, low), Math.max(low,
 
 function positionGuide() {
   const target = byId('action-target');
-  if (!currentStep() || !target || state.failedImage) return;
+  if (!currentStep() || !target || state.failedImage || state.loadingImage) return;
   const viewport = ui.viewport.getBoundingClientRect();
   const box = target.getBoundingClientRect();
   const width = ui.guide.offsetWidth;
@@ -241,7 +255,7 @@ function positionGuide() {
 }
 
 function advance() {
-  if (!currentStep() || state.failedImage) return;
+  if (!currentStep() || state.failedImage || state.loadingImage) return;
   if (currentStep().id === 'copy-url') state.clipboard = configuration.referenceUrl;
   state.index += 1;
   render();

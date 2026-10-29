@@ -22,4 +22,5 @@ dialog{max-width:480px;width:calc(100% - 28px);background:#161b22;border:1px sol
 .gh-fake-button svg{vertical-align:-2px;margin-right:4px}
 .gh-upload-header{height:107px;overflow:hidden;position:relative}.gh-upload-header img{position:absolute;left:0;top:0;width:879px;height:513px}
 .gh-create-original{clip-path:inset(0 0 36px 0)}
+.scene-viewport[data-loading=true]::after{content:'Cargando demo…';position:fixed;left:50%;top:45%;transform:translate(-50%,-50%);font-size:12px;color:#9198a1}
 @media(max-width:700px){.text-hotspot input{font-size:16px;line-height:1}}
