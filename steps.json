@@ -1,247 +1,190 @@
 {
-  "version": 1,
-  "referenceUrl": "https://github.com/Biniac/test.git",
+  "version": 4,
+  "owner": "Biniac",
   "practiceName": "mi-primer-proyecto",
+  "sampleFiles": [
+    {
+      "name": "index.html",
+      "size": "1.2 KB"
+    },
+    {
+      "name": "estilos.css",
+      "size": "0.8 KB"
+    },
+    {
+      "name": "README.md",
+      "size": "0.4 KB"
+    }
+  ],
   "chapters": [
     {
       "id": "create",
-      "title": "Crear un repositorio privado",
-      "description": "Tu espacio para guardar un proyecto"
+      "title": "Crear un repositorio privado"
     },
     {
       "id": "upload",
-      "title": "Subir los archivos del proyecto",
-      "description": "Del equipo al repositorio"
+      "title": "Subir los archivos del proyecto"
     },
     {
       "id": "share",
-      "title": "Copiar la URL con Code",
-      "description": "La dirección de tu repositorio"
+      "title": "Copiar la URL del repositorio"
     }
   ],
   "steps": [
     {
       "id": "create-menu",
       "chapter": "create",
-      "source": "original",
-      "image": "assets/screenshots/02_repositorio.png",
-      "width": 879,
-      "height": 513,
-      "target": {
-        "x": 603,
-        "y": 16,
-        "width": 48,
-        "height": 31
-      },
-      "label": "Abrir menú de creación (+)",
-      "title": "Todo empieza con un +",
-      "instruction": "Haz clic en el botón + de la barra superior.",
-      "hint": "Está arriba a la derecha, junto a la pequeña flecha.",
-      "context": "Un repositorio es una carpeta de proyecto en GitHub. Empezamos desde un repositorio público de ejemplo."
+      "view": "dashboard",
+      "selector": "#create-menu-button",
+      "action": "open-create-menu",
+      "title": "Crea un nuevo repositorio",
+      "instruction": "Haz clic en el + de la barra superior.",
+      "hint": "Está a la derecha del buscador, junto a una flecha pequeña.",
+      "context": "Un repositorio es el espacio donde guardas los archivos y el historial de un proyecto."
     },
     {
       "id": "new-repository",
       "chapter": "create",
-      "source": "original",
-      "image": "assets/screenshots/06_menu_crear.png",
-      "width": 879,
-      "height": 513,
-      "target": {
-        "x": 478,
-        "y": 92,
-        "width": 165,
-        "height": 29
-      },
-      "label": "Seleccionar New repository",
-      "title": "Abre un nuevo repositorio",
+      "view": "dashboard",
+      "selector": "#new-repository",
+      "action": "new-repository",
+      "title": "Elige New repository",
       "instruction": "En el menú, selecciona New repository.",
-      "hint": "Es la segunda opción del menú desplegado.",
+      "hint": "Es la segunda opción del menú de creación.",
       "context": "New repository significa «Nuevo repositorio»."
     },
     {
       "id": "repository-name",
       "chapter": "create",
-      "source": "original",
-      "image": "assets/screenshots/07_nuevo_repositorio.png",
-      "width": 879,
-      "height": 513,
-      "target": {
-        "x": 252,
-        "y": 241,
-        "width": 533,
-        "height": 31
-      },
+      "view": "create",
+      "selector": "#repository-name",
+      "action": "name",
       "kind": "text",
-      "label": "Repository name: escribe mi-primer-proyecto",
-      "title": "Ponle nombre a tu proyecto",
+      "title": "Ponle nombre al proyecto",
       "instruction": "Escribe mi-primer-proyecto y pulsa Enter.",
-      "hint": "Escribe el nombre con guiones, sin espacios, en Repository name.",
-      "context": "El nombre solo se guarda dentro de esta práctica."
+      "hint": "Escribe un nombre sin espacios en Repository name. Después pulsa Enter.",
+      "context": "Puedes usar el nombre del ejemplo u otro con letras, números y guiones. La disponibilidad se simula localmente."
     },
     {
       "id": "visibility-menu",
       "chapter": "create",
-      "source": "recreated",
-      "scene": "create-public",
-      "width": 879,
-      "height": 750,
-      "selector": "[data-control='visibility']",
-      "label": "Abrir opciones de visibilidad: Public",
+      "view": "create",
+      "selector": "#visibility-toggle",
+      "action": "visibility-menu",
       "title": "Elige quién podrá verlo",
-      "instruction": "Haz clic en Public para abrir las opciones.",
-      "hint": "Busca el selector de visibilidad, a la derecha de Choose visibility.",
-      "context": "Public permite que cualquiera vea el contenido. Para este ejercicio elegiremos Private."
+      "instruction": "Abre el selector que dice Public.",
+      "hint": "Está en Configuration, a la derecha de Choose visibility.",
+      "context": "Public permite que cualquiera vea el contenido. En este ejercicio elegiremos Private."
     },
     {
       "id": "select-private",
       "chapter": "create",
-      "source": "recreated",
-      "scene": "create-menu",
-      "width": 879,
-      "height": 750,
-      "selector": "[data-control='private']",
-      "label": "Seleccionar Private",
-      "title": "Quédate con Private",
-      "instruction": "Selecciona Private en el menú de visibilidad.",
-      "hint": "Elige la opción con el candado y el texto Private.",
-      "context": "Private restringe el acceso a ti y a las personas que autorices."
+      "view": "create",
+      "selector": "#private-option",
+      "action": "private",
+      "title": "Selecciona Private",
+      "instruction": "Elige la opción Private, con el candado.",
+      "hint": "Es la segunda opción del menú de visibilidad.",
+      "context": "Private limita el acceso a ti y a las personas que autorices."
+    },
+    {
+      "id": "initialize-readme",
+      "chapter": "create",
+      "view": "create",
+      "selector": "#readme-switch",
+      "action": "readme",
+      "title": "Añade el archivo de presentación",
+      "instruction": "Activa Add README.",
+      "hint": "Usa el interruptor de la fila Add README.",
+      "context": "README es el archivo de presentación. Al crearlo, el repositorio tendrá un primer archivo y podrás usar Add file para añadir el proyecto."
     },
     {
       "id": "confirm-create",
       "chapter": "create",
-      "source": "recreated",
-      "scene": "create-private",
-      "width": 879,
-      "height": 750,
-      "selector": "[data-control='create']",
-      "label": "Confirmar con Create repository",
+      "view": "create",
+      "selector": "#create-repository",
+      "action": "create",
       "title": "Confirma la creación",
       "instruction": "Haz clic en Create repository.",
       "hint": "Es el botón verde al final del formulario.",
-      "context": "La visibilidad ya dice Private. La creación que harás aquí es simulada."
+      "context": "Comprueba que la visibilidad indique Private. La creación solo ocurre en esta simulación."
     },
     {
       "id": "add-files-menu",
       "chapter": "upload",
-      "source": "original",
-      "image": "assets/screenshots/02_repositorio.png",
-      "width": 879,
-      "height": 513,
-      "target": {
-        "x": 444,
-        "y": 189,
-        "width": 33,
-        "height": 32
-      },
-      "label": "Abrir menú para añadir archivos (+)",
-      "title": "Ahora, añade los archivos",
-      "instruction": "Haz clic en el + situado a la izquierda de Code.",
-      "hint": "Busca el + pequeño entre Go to file y el botón verde Code.",
-      "context": "¡Repositorio privado creado en la práctica! Ahora usamos Biniac/test, el ejemplo público de las capturas. Este + puede aparecer como Add file."
+      "view": "repository",
+      "selector": "#add-file-button",
+      "action": "add-file-menu",
+      "title": "Añade los archivos del proyecto",
+      "instruction": "Abre Add file (o +), junto al botón Code.",
+      "hint": "Busca Add file o el botón +, entre Go to file y Code.",
+      "context": "Ya estás dentro del mismo repositorio privado que acabas de crear."
     },
     {
       "id": "upload-files",
       "chapter": "upload",
-      "source": "original",
-      "image": "assets/screenshots/10_agregar_archivos.png",
-      "width": 879,
-      "height": 513,
-      "target": {
-        "x": 449,
-        "y": 264,
-        "width": 181,
-        "height": 31
-      },
-      "label": "Seleccionar Upload files",
+      "view": "repository",
+      "selector": "#upload-files",
+      "action": "upload-files",
       "title": "Elige la carga manual",
       "instruction": "Selecciona Upload files.",
-      "hint": "Es la segunda opción, con el icono de una flecha hacia arriba.",
-      "context": "Upload files significa «Subir archivos». No necesitas usar comandos."
+      "hint": "Es la opción de subir archivos, debajo de Create new file.",
+      "context": "No necesitas usar comandos para esta forma de cargar un proyecto."
     },
     {
       "id": "choose-files",
       "chapter": "upload",
-      "source": "recreated",
-      "scene": "upload-empty",
-      "width": 879,
-      "height": 650,
-      "selector": "[data-control='choose-files']",
-      "label": "Elegir tres archivos de ejemplo con choose your files",
-      "title": "Selecciona tu proyecto",
-      "instruction": "Haz clic en choose your files para elegir los archivos de ejemplo.",
-      "hint": "Está en el centro del área con borde punteado.",
-      "context": "Se cargarán tres archivos ficticios automáticamente. No abriremos archivos de tu equipo."
+      "view": "upload",
+      "selector": "#choose-files",
+      "action": "choose-files",
+      "title": "Selecciona los archivos",
+      "instruction": "Haz clic en choose your files.",
+      "hint": "Está en el centro del área con borde discontinuo.",
+      "context": "Se seleccionarán tres archivos de ejemplo. No abriremos archivos de tu equipo."
     },
     {
       "id": "commit-upload",
       "chapter": "upload",
-      "source": "recreated",
-      "scene": "upload-ready",
-      "width": 879,
-      "height": 650,
-      "selector": "[data-control='commit']",
-      "label": "Guardar los archivos con Commit changes",
+      "view": "upload",
+      "selector": "#commit-changes",
+      "action": "commit",
       "title": "Guarda la carga",
-      "instruction": "Haz clic en Commit changes para confirmar los archivos.",
-      "hint": "Es el botón verde debajo del mensaje «Carga inicial del proyecto».",
-      "context": "Seleccionar archivos no termina la carga. Commit changes guarda el cambio en el repositorio."
+      "instruction": "Haz clic en Commit changes.",
+      "hint": "Es el botón verde situado debajo del mensaje del cambio.",
+      "context": "Puedes editar el mensaje. Seleccionar archivos no termina la carga: Commit changes la confirma."
     },
     {
       "id": "open-code",
       "chapter": "share",
-      "source": "original",
-      "image": "assets/screenshots/02_repositorio.png",
-      "width": 879,
-      "height": 513,
-      "target": {
-        "x": 484,
-        "y": 189,
-        "width": 105,
-        "height": 32
-      },
-      "label": "Abrir el botón Code",
-      "title": "Encuentra la dirección",
-      "instruction": "Haz clic en el botón verde Code.",
-      "hint": "Está sobre la lista de archivos, a la derecha del +.",
-      "context": "Carga confirmada en la práctica. Regresamos a la captura del repositorio público Biniac/test para localizar su URL."
+      "view": "repository",
+      "selector": "#code-button",
+      "action": "open-code",
+      "title": "Localiza la dirección",
+      "instruction": "Abre el botón verde Code.",
+      "hint": "Está sobre la lista de archivos, a la derecha de Add file.",
+      "context": "La lista ahora muestra los archivos que acabas de guardar en el repositorio privado."
     },
     {
       "id": "choose-https",
       "chapter": "share",
-      "source": "original",
-      "image": "assets/screenshots/09_menu_code.png",
-      "width": 879,
-      "height": 513,
-      "target": {
-        "x": 103,
-        "y": 140,
-        "width": 65,
-        "height": 33
-      },
-      "label": "Seleccionar HTTPS en Code",
-      "title": "Usa la opción HTTPS",
-      "instruction": "Selecciona HTTPS en la sección Clone.",
-      "hint": "Es la primera pestaña: está antes de SSH y GitHub CLI.",
-      "context": "HTTPS muestra una dirección que empieza por https://. En la captura ya está seleccionada; púlsala para reconocerla."
+      "view": "repository",
+      "selector": "#https-tab",
+      "action": "https",
+      "title": "Usa HTTPS",
+      "instruction": "Selecciona la pestaña HTTPS.",
+      "hint": "Es la primera pestaña de Clone, antes de SSH y GitHub CLI.",
+      "context": "La URL HTTPS comienza por https://. Ya aparece seleccionada; púlsala para reconocerla."
     },
     {
       "id": "copy-url",
       "chapter": "share",
-      "source": "original",
-      "image": "assets/screenshots/09_menu_code.png",
-      "width": 879,
-      "height": 513,
-      "target": {
-        "x": 436,
-        "y": 180,
-        "width": 27,
-        "height": 31
-      },
-      "label": "Copiar la URL del repositorio en el portapapeles de práctica",
-      "title": "Un clic y la URL es tuya",
-      "instruction": "Pulsa el icono de copiar, a la derecha de la URL.",
-      "hint": "Busca los dos cuadrados superpuestos, junto al campo de dirección.",
-      "context": "La URL irá al portapapeles de esta simulación. No cambiaremos el portapapeles de tu equipo."
+      "view": "repository",
+      "selector": "#copy-url",
+      "action": "copy",
+      "title": "Copia la URL del repositorio",
+      "instruction": "Pulsa el icono de copiar junto a la dirección.",
+      "hint": "Es el botón con dos cuadrados superpuestos, a la derecha de la URL.",
+      "context": "Se copiará al portapapeles de práctica. Compartir una URL privada no concede acceso al repositorio."
     }
   ]
 }

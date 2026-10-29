@@ -2,41 +2,31 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#0d1117">
-  <meta name="description" content="Practica GitHub en una demo guiada: crea un repositorio privado, sube archivos y copia su URL, sin iniciar sesión.">
+  <meta name="description" content="Un clon HTML de GitHub con un tutorial integrado para crear un repositorio privado, subir archivos y copiar su URL.">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
-  <title>GitHub · Tutorial interactivo</title>
+  <title>GitHub · Práctica interactiva</title>
   <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
-  <link rel="stylesheet" href="./styles.css?v=3">
-  <script src="./app.js?v=3" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=4">
+  <script src="./app.js?v=4" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#lesson-title">Ir a la instrucción</a>
-  <main id="demo" aria-label="Demo guiada de GitHub">
-    <div class="scene-viewport" id="viewport" aria-label="Pantalla de GitHub"><div class="screen-surface" id="surface"></div><div class="scroll-spacer" aria-hidden="true"></div></div>
-    <section id="guide" class="guide-card" aria-label="Instrucción del tutorial" hidden>
-      <div class="guide-arrow" aria-hidden="true"></div>
-      <header class="guide-header"><span class="step-badge" id="step-count"></span><span id="chapter-label"></span><button class="icon-button" id="context-button" aria-label="Más información sobre este paso" aria-expanded="false" title="Más información">ⓘ</button></header>
-      <h1 id="lesson-title" tabindex="-1"></h1>
-      <p id="instruction"></p>
-      <p id="context-note" class="context-note" hidden></p>
-      <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
-      <footer class="guide-controls"><button id="back-button" class="back-button"><span aria-hidden="true">←</span> Anterior</button><div class="guide-utilities"><button id="repeat-button" class="icon-button" aria-label="Repetir paso" title="Repetir paso">↻</button><button id="hint-button" class="hint-button">Ver pista</button></div></footer>
-      <p class="action-cue" id="action-cue">Haz clic en la zona destacada para avanzar</p>
-    </section>
-
-    <div id="player" class="demo-player" aria-label="Controles del tutorial">
-      <span class="player-label"><span class="practice-dot" aria-hidden="true"></span> Tutorial</span><div id="progress" class="progress-track" role="progressbar" aria-label="Progreso del tutorial" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progress-fill"></span></div><span id="player-count"></span><span class="player-divider" aria-hidden="true"></span><button class="icon-button" id="zoom-button" aria-label="Ver pantalla completa" aria-pressed="false" title="Cambiar encuadre">⛶</button><button class="icon-button" id="restart-button" aria-label="Reiniciar tutorial" title="Reiniciar tutorial">↺</button><button class="icon-button" id="about-button" aria-label="Cómo funciona el tutorial" title="Cómo funciona">?</button>
-    </div>
-    <span id="source-label" class="source-label"></span>
-
-    <section class="completion-overlay" id="completion" hidden aria-labelledby="complete-title"><div class="completion-card"><span class="complete-check" aria-hidden="true">✓</span><p class="completion-kicker">13 DE 13 · COMPLETADO</p><h2 id="complete-title" tabindex="-1">Ya sabes hacerlo.</h2><ul class="completed-actions"><li>Crear un repositorio con visibilidad Private</li><li>Subir archivos y confirmar con Commit changes</li><li>Abrir Code y copiar la URL HTTPS</li></ul><label for="practice-clipboard">URL en el portapapeles de práctica</label><input id="practice-clipboard" readonly><p class="completion-note">Todo ocurrió en esta simulación. Copiar la URL de un repositorio privado no concede acceso.</p><div class="complete-buttons"><button class="primary-button" id="again-button">Repetir tutorial</button><button class="secondary-button" id="review-button">Revisar último paso</button></div></div></section>
-    <section class="load-error" id="load-error" hidden role="alert"><h2>No se pudo cargar la demo</h2><p>Recarga la página para volver a intentarlo.</p><button class="primary-button" id="reload-button">Reintentar</button></section>
-  </main>
+  <a class="skip-link" href="#lesson-title">Ir a la instrucción del tutorial</a>
+  <main id="viewport" class="app-viewport" aria-label="Clon HTML de GitHub"><div id="github-app" class="github-app"></div></main>
+  <div id="focus-ring" class="focus-ring" hidden aria-hidden="true"><span id="focus-number"></span></div>
+  <section id="guide" class="guide-card" aria-label="Tutorial integrado" hidden>
+    <div class="guide-arrow" aria-hidden="true"></div>
+    <header class="guide-header"><span id="step-count" class="step-badge"></span><span id="chapter-label"></span><button id="context-button" class="icon-button" aria-label="Más información" aria-expanded="false" title="Más información">ⓘ</button></header>
+    <h2 id="lesson-title" tabindex="-1"></h2><p id="instruction"></p><p id="context-note" class="context-note" hidden></p><div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+    <footer class="guide-controls"><button id="back-button" class="tutorial-back">← Anterior</button><div><button id="repeat-button" class="icon-button" aria-label="Repetir paso" title="Repetir paso">↻</button><button id="hint-button" class="hint-button">Ver pista</button></div></footer><p id="action-cue" class="action-cue"></p>
+  </section>
+  <nav id="player" class="tutorial-player" aria-label="Controles del tutorial"><span class="player-label"><i aria-hidden="true"></i> Simulación</span><div id="progress" class="progress-track" role="progressbar" aria-label="Progreso del tutorial" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progress-fill"></span></div><span id="player-count"></span><span class="player-divider" aria-hidden="true"></span><button id="restart-button" class="icon-button" aria-label="Reiniciar tutorial" title="Reiniciar tutorial">↺</button><button id="about-button" class="icon-button" aria-label="Cómo funciona" title="Cómo funciona">?</button></nav>
   <div id="announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
-  <dialog id="about-dialog" aria-labelledby="about-title"><button class="dialog-close icon-button" data-close-dialog aria-label="Cerrar información">×</button><h2 id="about-title">Una demo, sin usar tu cuenta</h2><p>Completa la acción destacada para avanzar. Los clics en otro lugar muestran una pista. Puedes volver, repetir y reiniciar cuando quieras.</p><p>Las capturas originales conservan la interfaz de GitHub. Las pantallas que faltaban se recrearon para completar la práctica; la etiqueta inferior permite distinguirlas.</p><p>Primero creas un repositorio privado ficticio. Después usas Biniac/test, el ejemplo público de las capturas, para practicar la carga y la copia de URL.</p><p>No se envían datos a GitHub, no se abren archivos de tu equipo y el portapapeles es interno a la demo.</p><button class="primary-button" data-close-dialog>Volver a la demo</button></dialog>
-  <dialog id="restart-dialog" aria-labelledby="restart-title"><h2 id="restart-title">¿Reiniciar el tutorial?</h2><p>Volverás al primer paso.</p><div class="dialog-actions"><button class="secondary-button" data-close-dialog>Seguir aquí</button><button class="primary-button" id="confirm-restart">Reiniciar</button></div></dialog>
-  <noscript><div class="load-error">Activa JavaScript para usar el tutorial.</div></noscript>
+  <section id="completion" class="completion-overlay" hidden aria-labelledby="complete-title"><div class="completion-card"><span class="complete-check" aria-hidden="true">✓</span><p id="completion-kicker"></p><h2 id="complete-title" tabindex="-1">Ya sabes hacerlo.</h2><ul><li>Crear un repositorio privado.</li><li>Subir los archivos y guardar con Commit changes.</li><li>Abrir Code y copiar la URL HTTPS.</li></ul><label for="practice-clipboard">URL en el portapapeles de práctica</label><input id="practice-clipboard" readonly><p class="completion-note">Es una dirección simulada. No se creó ningún repositorio ni se enviaron archivos a GitHub.</p><div class="complete-buttons"><button id="again-button" class="gh-button gh-primary">Volver a practicar</button><button id="review-button" class="gh-button">Revisar último paso</button></div></div></section>
+  <dialog id="about-dialog" aria-labelledby="about-title"><button class="dialog-close icon-button" data-close-dialog aria-label="Cerrar información">×</button><h2 id="about-title">GitHub para practicar</h2><p>Esta interfaz está construida con HTML, CSS y JavaScript. Sus menús, campos, botones y listas son elementos de la aplicación. Las capturas solo sirvieron como referencia visual.</p><p>Sigue las instrucciones y usa el control destacado para avanzar. Los clics en otros lugares muestran una pista. Puedes retroceder, repetir y reiniciar.</p><p>Crearás un repositorio privado ficticio, cargarás archivos de ejemplo y copiarás su URL en un portapapeles de práctica. Todo ocurre en memoria, sin iniciar sesión ni contactar a GitHub.</p><button class="gh-button gh-primary" data-close-dialog>Volver a la práctica</button></dialog>
+  <dialog id="restart-dialog" aria-labelledby="restart-title"><h2 id="restart-title">¿Reiniciar el tutorial?</h2><p>Volverás al primer paso y se borrarán los cambios de esta práctica.</p><div class="dialog-actions"><button class="gh-button" data-close-dialog>Seguir aquí</button><button id="confirm-restart" class="gh-button gh-primary">Reiniciar</button></div></dialog>
+  <section id="load-error" class="load-error" hidden role="alert"><h2>No se pudo cargar la práctica</h2><p>Recarga la página para intentarlo de nuevo.</p><button id="reload-button" class="gh-button gh-primary">Reintentar</button></section>
+  <noscript><p class="load-error">Activa JavaScript para usar esta práctica.</p></noscript>
 </body>
 </html>
