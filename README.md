@@ -1,8 +1,8 @@
-# GitHub, paso a paso · BINIAC
+# Tutorial interactivo de GitHub
 
-Tutorial estático en español para principiantes: crear un repositorio privado, subir archivos manualmente y copiar la URL desde Code. La secuencia contiene **13 acciones** con capturas originales y vistas locales recreadas para completar el material que faltaba.
+Demo estática a pantalla completa, con GitHub como escenario y una guía flotante junto al botón correcto. No tiene portada, panel lateral ni una identidad visual externa a GitHub. Enseña a principiantes a crear un repositorio privado, subir archivos manualmente y copiar la URL desde Code. La secuencia contiene **13 acciones** con capturas originales y vistas locales recreadas para completar el material que faltaba.
 
-No necesita instalar dependencias, cuentas, suscripciones, servidor de aplicación ni base de datos. Las imágenes y las fuentes Prompt se sirven localmente. No hay analítica, cookies, llamadas a la API de GitHub ni archivos de usuario.
+No necesita instalar dependencias, cuentas, suscripciones, servidor de aplicación ni base de datos. Las imágenes se sirven localmente y la tipografía usa las fuentes de sistema de GitHub. No hay analítica, cookies, llamadas a la API de GitHub ni archivos de usuario.
 
 ## Qué se simula
 
@@ -12,18 +12,17 @@ No necesita instalar dependencias, cuentas, suscripciones, servidor de aplicaci�
 - El botón de copiar guarda la URL de referencia en un **portapapeles de práctica**, dentro de la aplicación. No modifica el portapapeles del sistema.
 - Solo la acción correcta avanza. Un clic en el resto de la pantalla o un nombre incorrecto muestra una pista. Se puede volver, repetir y reiniciar.
 
-La interfaz de GitHub puede variar según la cuenta y los permisos. Esta práctica reproduce el flujo del material suministrado. Las vistas recreadas están identificadas en la barra del visor. La selección de Private, la confirmación y la carga se recrearon a petición del usuario; no se presentan como capturas originales.
+La interfaz de GitHub puede variar según la cuenta y los permisos. Esta práctica reproduce el flujo del material suministrado. Las vistas recreadas están identificadas con una pequeña etiqueta superpuesta. La selección de Private, la confirmación y la carga se recrearon a petición del usuario; no se presentan como capturas originales.
 
 ## Archivos
 
 | Archivo | Uso |
 | --- | --- |
 | `index.html` | Estructura accesible, controles y pantalla final |
-| `styles.css` | Identidad BINIAC, adaptación a móvil y vistas recreadas |
+| `styles.css` | Apariencia GitHub, guía flotante, adaptación a móvil y vistas recreadas |
 | `app.js` | Interacción local y componentes de las vistas recreadas |
 | `steps.json` | Orden, textos, objetivos, capturas y zonas clicables |
 | `assets/screenshots/` | Cinco PNG originales revisados, sin modificaciones |
-| `assets/fonts/` | Prompt ExtraLight, Regular y SemiBold; licencia OFL |
 | `.nojekyll` | Publicación de los archivos estáticos sin Jekyll |
 | `PRIVACIDAD.md` | Alcance de la revisión previa a publicación |
 
@@ -53,7 +52,7 @@ Ejemplo de un paso basado en captura:
 }
 ```
 
-Para cambiar el orden, mueve los objetos dentro de `steps`. El contador y los capítulos se calculan automáticamente. Mantén los pasos de cada capítulo juntos y usa los identificadores `create`, `upload` y `share`.
+Para cambiar el orden, mueve los objetos dentro de `steps`. El contador y el nombre del objetivo se calculan automáticamente. Mantén los pasos de cada capítulo juntos y usa los identificadores `create`, `upload` y `share`.
 
 En una vista recreada, `scene` elige el componente y `selector` identifica el elemento con `data-control`. El marco clicable se mide sobre ese elemento, incluso al ampliar. Los componentes están en `createScene` y `uploadScene`, dentro de `app.js`.
 
@@ -75,7 +74,7 @@ La publicación usa `main`, carpeta raíz `/`, con `.nojekyll`. Todos los enlace
 
 ## Accesibilidad y adaptación
 
-Botones con nombre accesible, uso con Tab/Enter, entrada de nombre con Enter, avisos de pista y avance con región viva, progreso semántico y soporte de movimiento reducido. En pantallas pequeñas, el visor enfoca automáticamente la acción; el control «Ver pantalla completa» permite recuperar el contexto. No es necesario acertar una zona diminuta en una imagen reducida.
+Botones con nombre accesible, uso con Tab/Enter, entrada de nombre con Enter, avisos de pista y avance con región viva, progreso semántico y soporte de movimiento reducido. En pantallas pequeñas, la demo enfoca automáticamente la acción y fija la guía en la parte inferior; el control «Ver imagen completa» permite recuperar el contexto. No es necesario acertar una zona diminuta en una imagen reducida.
 
 ## Referencias
 
@@ -83,4 +82,4 @@ Botones con nombre accesible, uso con Tab/Enter, entrada de nombre con Enter, av
 - [Subir archivos — documentación oficial de GitHub](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository)
 - [Configurar GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 
-Prompt se distribuye bajo SIL Open Font License; se incluye su licencia en `assets/fonts/OFL.txt`. Las capturas conservan la apariencia y las marcas de GitHub. Este material es una simulación educativa de BINIAC.
+Las capturas conservan la apariencia y las marcas de GitHub. Este material es una simulación educativa; todas las operaciones de la práctica son locales.
